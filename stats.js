@@ -19,45 +19,11 @@ const githubRequest = async (url) => {
   }
 };
 
-<<<<<<< HEAD
 const formatDate = (date) => {
   const options = { month: "short", day: "numeric", year: "numeric" };
   return date.toLocaleDateString(undefined, options);
 };
 
-=======
-// Function to fetch and display the profile picture
-const displayProfilePicture = async () => {
-  const userProfile = await githubRequest(`https://api.github.com/user`, GITHUB_TOKEN);
-  if (!userProfile) return;
-
-  const profilePictureUrl = userProfile.avatar_url;
-  const profilePictureElement = document.getElementById("profile-picture");
-  profilePictureElement.src = profilePictureUrl;
-};
-
-// Function to fetch and display the username, full name, and bio
-const displayUserDetails = async () => {
-  const userProfile = await githubRequest(`https://api.github.com/user`, GITHUB_TOKEN);
-  if (!userProfile) return;
-
-  const username = userProfile.login;
-  const fullName = userProfile.name;
-  const bio = userProfile.bio;
-
-  const usernameElement = document.getElementById("username");
-  const fullNameElement = document.getElementById("full-name");
-  const bioElement = document.getElementById("bio");
-
-  usernameElement.textContent = username;
-  fullNameElement.textContent = fullName;
-  bioElement.textContent = bio;
-};
-
-// Call displayUserDetails after updateStats finishes
-
-
->>>>>>> 55ca7a6db49ff7b4b2193da5a66ea13d9ad315f7
 // Function to fetch total followers, following, and total repositories (including private)
 const getUserStats = async () => {
   const userProfile = await githubRequest(
@@ -256,25 +222,11 @@ const updateStats = async () => {
 
 
   document.getElementById("total-stars-value").innerHTML = totalStars;
-<<<<<<< HEAD
   document.getElementById("total-repos-value").textContent = userStats.totalRepositories;
   document.getElementById("following-value").textContent = userStats.totalFollowing;
   document.getElementById("followers-value").textContent = userStats.totalFollowers;
   // document.getElementById("total-commits-current-year").textContent = totalCommitsCurrentYear;
   document.getElementById("total-commits-last-year").textContent = totalCommitsForLastYear;
-=======
-  document.getElementById("total-repos-value").textContent =
-    userStats.totalRepositories;
-  document.getElementById("following-value").textContent =
-    userStats.totalFollowing;
-  document.getElementById("followers-value").textContent =
-    userStats.totalFollowers;
-  // document.getElementById("total-commits-current-year").textContent =
-  //   totalCommitsCurrentYear;
-  document.getElementById("total-commits-last-year").textContent =
-    totalCommitsForLastYear;
-  document.getElementById("total-commits").textContent = totalCommits;
->>>>>>> 55ca7a6db49ff7b4b2193da5a66ea13d9ad315f7
   document.getElementById("total-prs").textContent = totalPRs;
   // document.getElementById("total-merged-prs").textContent = totalMergedPRs;
   // document.getElementById("merged-prs-percentage").textContent = `${mergedPRsPercentage} %`;
@@ -285,8 +237,6 @@ const updateStats = async () => {
 // Main function to fetch and display stats
 const displayStats = async () => {
   await updateStats();
-  await displayUserDetails();
-  await displayProfilePicture(); // Call displayProfilePicture after updateStats finishes
 };
 
 // Call displayStats on page load
