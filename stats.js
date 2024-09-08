@@ -16,6 +16,37 @@ const githubRequest = async (url) => {
   }
 };
 
+// Function to fetch and display the profile picture
+const displayProfilePicture = async () => {
+  const userProfile = await githubRequest(`https://api.github.com/user`, GITHUB_TOKEN);
+  if (!userProfile) return;
+
+  const profilePictureUrl = userProfile.avatar_url;
+  const profilePictureElement = document.getElementById("profile-picture");
+  profilePictureElement.src = profilePictureUrl;
+};
+
+// Function to fetch and display the username, full name, and bio
+const displayUserDetails = async () => {
+  const userProfile = await githubRequest(`https://api.github.com/user`, GITHUB_TOKEN);
+  if (!userProfile) return;
+
+  const username = userProfile.login;
+  const fullName = userProfile.name;
+  const bio = userProfile.bio;
+
+  const usernameElement = document.getElementById("username");
+  const fullNameElement = document.getElementById("full-name");
+  const bioElement = document.getElementById("bio");
+
+  usernameElement.textContent = username;
+  fullNameElement.textContent = fullName;
+  bioElement.textContent = bio;
+};
+
+// Call displayUserDetails after updateStats finishes
+
+
 // Function to fetch total followers, following, and total repositories (including private)
 const getUserStats = async () => {
   const userProfile = await githubRequest(
@@ -237,8 +268,8 @@ const updateStats = async () => {
     userStats.totalFollowers;
   // document.getElementById("total-commits-current-year").textContent =
   //   totalCommitsCurrentYear;
-  // document.getElementById("total-commits-last-year").textContent =
-  //   totalCommitsForLastYear;
+  document.getElementById("total-commits-last-year").textContent =
+    totalCommitsForLastYear;
   document.getElementById("total-commits").textContent = totalCommits;
   document.getElementById("total-prs").textContent = totalPRs;
   // document.getElementById("total-merged-prs").textContent = totalMergedPRs;
@@ -251,53 +282,9 @@ const updateStats = async () => {
 // Main function to fetch and display stats
 const displayStats = async () => {
   await updateStats();
+  await displayUserDetails();
+  await displayProfilePicture(); // Call displayProfilePicture after updateStats finishes
 };
 
 // Call displayStats on page load
 window.onload = displayStats;
-
-{
-  {
-    /*  // Main function to display all stats
-      const displayStats = async () => {
-        const totalStars = await getTotalStars();
-        const userStats = await getUserStats();
-        const totalCommitsCurrentYear = await getTotalCommitsForCurrentYear();
-        const totalCommitsForLastYear = await getTotalCommitsForLastYear();
-        const totalCommits = await getTotalCommits();
-        const { totalPRs, totalMergedPRs } = await getPRStats();
-        const mergedPRsPercentage = totalPRs
-          ? ((totalMergedPRs / totalPRs) * 100).toFixed(2)
-          : 0;
-        const totalContributedRepos = await getContributedRepos();
-        const level = calculateRankLevel(
-          totalCommits,
-          totalPRs,
-          totalStars,
-          totalContributedRepos,
-          mergedPRsPercentage
-        );
-
-        const statsDiv = document.getElementById("stats");
-        statsDiv.innerHTML = `
-        <p>Total Stars Earned: ${totalStars}</p>
-        <p>Total Followers: ${userStats.totalFollowers}</p>
-        <p>Total Following: ${userStats.totalFollowing}</p>
-        <p>Total Repositories: ${userStats.totalRepositories}</p>
-        <p>Total Commits (Current Year): ${totalCommitsCurrentYear}</p>
-        <p>Total Commits (Last Year): ${totalCommitsForLastYear}</p>
-        <p>Total Commits: ${totalCommits}</p>
-        <p>Total PRs: ${totalPRs}</p>
-        <p>Total PRs Merged: ${totalMergedPRs}</p>
-        <p>Merged PRs Percentage: ${mergedPRsPercentage} %</p>
-        <p>Total PRs Reviewed: 0</p>
-        <p>Total Issues: 0</p>
-        <p>Total Discussions Started: 0</p>
-        <p>Total Discussions Answered: 0</p>
-        <p>Contributed to (last year): ${totalContributedRepos}</p>
-        <p>Rank: ${level}</p>
-      `;
-      };
-      displayStats();  */
-  }
-}
