@@ -6,42 +6,60 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    
     <div id="github-card" class="github-card">
       <div class="text-description">
         <div class="overlap-group">
           <p class="text-wrapper">
-            Always ready for a challenge. Trying to build something awesome and maybe break the internet along the way!
-            🚀🐱💻
+            Always ready for a challenge. Trying to build something awesome and
+            maybe break the internet along the way! 🚀🐱💻
           </p>
-          <div class="total-repositories"><div class="div">Total Repositories: 47</div></div>
-          <div class="following"><div class="text-wrapper-2">Following: 11</div></div>
-          <div class="followers"><div class="followers-2">Followers: 8</div></div>
+          <div class="total-repositories">
+            <div class="div">
+              Total Repositories: <span id="total-repos-value"></span><span id="total-commits-current-year"></span></span>
+            </div>
+          </div>
+          <div class="following">
+            <div class="text-wrapper-2">
+              Following: <span id="following-value"></span>
+            </div>
+          </div>
+          <div class="followers">
+            <div class="followers-2">
+              Followers: <span id="followers-value"></span>
+            </div>
+          </div>
         </div>
         <div class="text-wrapper-3">Shaun Roshan Furtado</div>
         <div class="text-wrapper-4">(@Shaunfurtado)</div>
       </div>
-      <img src="./img/avatars-3d-avatar-14.png" class="avatar" >
+      <img src="./img/avatars-3d-avatar-14.png" class="avatar" />
       <div class="card">
         <div class="overlap">
           <div class="text-wrapper-5">Commit Graph:</div>
           <div class="overlap-2">
             <div class="graph">
               <div class="overlap-group-2">
-                <img class="curved-graph" src="img/curved-graph.svg" /> <img class="dots" src="img/dots.png" />
+                <img class="curved-graph" src="img/curved-graph.svg" />
+                <img class="dots" src="img/dots.png" />
               </div>
             </div>
             <div class="text-wrapper-6">Last 30 days</div>
-          </div>
+          </div>  
         </div>
       </div>
       <div class="card-2">
         <div class="ranking">
-          <div class="a-wrapper"><div class="a">A</div></div>
+          <div class="a-wrapper"><div class="a"><span id="rank"></span></div></div>
         </div>
         <div class="group">
-          <div class="text-wrapper-7">Contributed to (2023):</div>
+          <div class="text-wrapper-7">Contributed to(2023):</div>
           <img class="git-commit" src="img/git-commit.svg" />
-          <div class="text-wrapper-8">302</div>
+          <div class="text-wrapper-8">
+            <span id="total-contributed-repos"></span>
+          </div>
         </div>
         <div class="group-2">
           <div class="text-wrapper-9">Total Issues:</div>
@@ -52,11 +70,13 @@
           <div class="group-3">
             <div class="text-wrapper-11">Total PRs:</div>
             <img class="img" src="img/git-pull-request.svg" />
-            <div class="text-wrapper-12">8</div>
+            <div class="text-wrapper-12"><span id="total-prs"></span></div>
           </div>
           <div class="group-4">
             <img class="star" src="img/star.svg" />
-            <div class="text-wrapper-13">27</div>
+            <div class="text-wrapper-13">
+              <span id="total-stars-value"></span>
+            </div>
             <div class="text-wrapper-14">Total Stars:</div>
           </div>
         </div>
@@ -106,29 +126,28 @@
         <div class="overlap-4">
           <p class="text-wrapper-19">Sep 21, 2021 - Present</p>
           <div class="text-wrapper-20">Total Contributions</div>
-          <div class="text-wrapper-21">650</div>
+          <div class="text-wrapper-21"><span id="total-commits"></span></div>
         </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image/dist/dom-to-image.min.js"></script>
     <button onclick="exportToSVG()">Export to SVG</button>
-    <img src="./github-card.svg" alt="github-card">
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/dom-to-image/dist/dom-to-image.min.js"></script>    
+    <img src="./github-card.svg" alt="github-card" />
+    <script src="stats.js"></script>
     <script>
       function exportToSVG() {
-        domtoimage.toSvg(document.getElementById('github-card'))
-            .then(function (dataUrl) {
-                var link = document.createElement('a');
-                link.download = 'github-card.svg';
-                link.href = dataUrl;
-                link.click();
-            })
-            .catch(function (error) {
-                console.error('Error exporting to SVG:', error);
-            });
-    }
+        domtoimage
+          .toSvg(document.getElementById("github-card"))
+          .then(function (dataUrl) {
+            var link = document.createElement("a");
+            link.download = "github-card.svg";
+            link.href = dataUrl;
+            link.click();
+          })
+          .catch(function (error) {
+            console.error("Error exporting to SVG:", error);
+          });
+      }
     </script>
-    
   </body>
 </html>
