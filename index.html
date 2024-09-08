@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="github-card">
+    <div id="github-card" class="github-card">
       <div class="text-description">
         <div class="overlap-group">
           <p class="text-wrapper">
@@ -20,7 +20,7 @@
         <div class="text-wrapper-3">Shaun Roshan Furtado</div>
         <div class="text-wrapper-4">(@Shaunfurtado)</div>
       </div>
-      <div class="avatar"></div>
+      <img src="./img/avatars-3d-avatar-14.png" class="avatar" >
       <div class="card">
         <div class="overlap">
           <div class="text-wrapper-5">Commit Graph:</div>
@@ -110,5 +110,12 @@
         </div>
       </div>
     </div>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js">
+    </script>
+    <script>
+      html2canvas(document.querySelector("#github-card")).then(canvas => {
+        document.body.appendChild(canvas)
+    });
+    </script>
   </body>
 </html>
