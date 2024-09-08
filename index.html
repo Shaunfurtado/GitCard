@@ -110,12 +110,25 @@
         </div>
       </div>
     </div>
+    <button onclick="exportToSVG()">Export to SVG</button>
+    <img src="./github-card.svg" alt="github-card">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image/dist/dom-to-image.min.js"></script>    
     <script>
-      html2canvas(document.querySelector("#github-card")).then(canvas => {
-        document.body.appendChild(canvas)
-    });
+      function exportToSVG() {
+        domtoimage.toSvg(document.getElementById('github-card'))
+            .then(function (dataUrl) {
+                var link = document.createElement('a');
+                link.download = 'github-card.svg';
+                link.href = dataUrl;
+                link.click();
+            })
+            .catch(function (error) {
+                console.error('Error exporting to SVG:', error);
+            });
+    }
     </script>
+    
   </body>
 </html>
