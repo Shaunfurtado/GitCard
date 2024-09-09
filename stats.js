@@ -1,8 +1,9 @@
-const GITHUB_USERNAME = "GITHUB_USERNAME";
-const GITHUB_TOKEN = "GITHUB_TOKEN";
+const GITHUB_USERNAME = "GITHUB_USERNAME"; // Your GitHub username
+const GITHUB_TOKEN = "GITHUB_TOKEN"; // Your GitHub token
 
 const currentYear = new Date().getFullYear();
 const previousYear = currentYear - 1;
+document.getElementById("previous-year").textContent = previousYear;
 
 // Helper function to make authenticated GitHub API requests
 const githubRequest = async (url) => {
@@ -24,7 +25,7 @@ const formatDate = (date) => {
   return date.toLocaleDateString(undefined, options);
 };
 
-// Function to fetch total followers, following, and total repositories (including private)
+// Function to fetch total followers, following, repositories, and user profile
 const getUserStats = async () => {
   const userProfile = await githubRequest(
     `https://api.github.com/user`,
@@ -67,7 +68,6 @@ const getTotalStars = async () => {
   const repos = await githubRequest(
     `https://api.github.com/users/${GITHUB_USERNAME}/repos`
   );
-  if (!repos) return 0;
   const totalStars = repos.reduce(
     (acc, repo) => acc + repo.stargazers_count,
     0
@@ -77,6 +77,7 @@ const getTotalStars = async () => {
 
 let totalCommits;
 
+// Function to map data to respective elements from the externally fetched data
 function mapDataToElements(data) {
   const [totalCommitsData, joinedDate, longestStreak, streakDuration] = data;
   totalCommits = totalCommitsData
@@ -88,7 +89,7 @@ function mapDataToElements(data) {
 }
 
 fetch("./external/final_output.txt")
-  .then(response => response.json()) // Assuming output.txt is a JSON file
+  .then(response => response.json())
   .then(data => {
     mapDataToElements(data);
   })
@@ -225,13 +226,13 @@ const updateStats = async () => {
   document.getElementById("total-repos-value").textContent = userStats.totalRepositories;
   document.getElementById("following-value").textContent = userStats.totalFollowing;
   document.getElementById("followers-value").textContent = userStats.totalFollowers;
-  // document.getElementById("total-commits-current-year").textContent = totalCommitsCurrentYear;
   document.getElementById("total-commits-last-year").textContent = totalCommitsForLastYear;
   document.getElementById("total-prs").textContent = totalPRs;
-  // document.getElementById("total-merged-prs").textContent = totalMergedPRs;
-  // document.getElementById("merged-prs-percentage").textContent = `${mergedPRsPercentage} %`;
   document.getElementById("total-contributed-repos").textContent = totalContributedRepos;
   document.getElementById("rank").textContent = level;
+  // document.getElementById("total-commits-current-year").textContent = totalCommitsCurrentYear;
+  // document.getElementById("total-merged-prs").textContent = totalMergedPRs;
+  // document.getElementById("merged-prs-percentage").textContent = `${mergedPRsPercentage} %`;
 };
 
 // Main function to fetch and display stats

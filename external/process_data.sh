@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Download the response file
-curl https://streak-stats.demolab.com/?user=Shaunfurtado -o response.txt
+curl https://streak-stats.demolab.com/?user=GITHUB_USERNAME -o response.txt
 
 # Extract and clean the data
 sed -n '/<text[^>]*>/,/<\/text>/p' response.txt | sed 's/<\/\?text[^>]*>//g' | sed '/^[[:space:]]*$/d' | sed 's/^[ \t]*//;s/[ \t]*$//' > extracted_data.txt
