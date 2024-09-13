@@ -1,6 +1,3 @@
-const GITHUB_USERNAME = "GITHUB_USERNAME"; // Your GitHub username
-const GITHUB_TOKEN = "GITHUB_TOKEN"; // Your GitHub token
-
 const currentYear = new Date().getFullYear();
 const previousYear = currentYear - 1;
 document.getElementById("previous-year").textContent = previousYear;

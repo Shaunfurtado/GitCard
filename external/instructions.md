@@ -18,15 +18,9 @@ This guide walks you through creating a visually appealing GitHub card that show
      4. Select the scopes you need (at a minimum, `repo`). You can find details about scopes on the GitHub documentation page.
      5. Click on "Generate token" and copy the generated token value. **Important:** Keep this token confidential as it grants access to your GitHub account.
 
-2. **Modify `stats.js`:**
+2. **Run Data Processing Scripts:**
 
-   - Open the `stats.js` file in your code editor.
-   - Locate the lines where your GitHub username and personal access token are defined. Replace the placeholder values with your actual credentials obtained in step 1.
-   - **Important:** **Do not** commit your personal access token to a public repository. Consider storing it securely in an environment variable.
-
-3. **Run Data Processing Scripts:**
-
-    *Scripts are located at `external` folder*
+    *Scripts are located at `/external` folder*
 
 <details>
 
@@ -43,6 +37,7 @@ This guide walks you through creating a visually appealing GitHub card that show
   - **GitHub Readme Streak Stats:** Provides information about your GitHub contribution streaks.
 
 </details>
+
 
    **Windows with PowerShell:**
 
@@ -73,6 +68,11 @@ This guide walks you through creating a visually appealing GitHub card that show
         ```bash
         ./process_data.sh
         ```
+
+3. **Open `index.html` in live server:**
+
+   - Enter Your Github Username and Github Private Token.
+
 
 4. **View Your GitHub Card:**
 
