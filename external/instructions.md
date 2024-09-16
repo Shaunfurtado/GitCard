@@ -5,6 +5,7 @@ This guide walks you through creating a visually appealing GitHub card that show
 **Prerequisites:**
 
 - A GitHub account
+- Node.js
 
 **Steps:**
 
@@ -20,54 +21,31 @@ This guide walks you through creating a visually appealing GitHub card that show
 
 2. **Run Data Processing Scripts:**
 
-    *Scripts are located at `/external` folder*
+   <details>
 
-<details>
+   **Note:**
 
-  **Note:**
+   This process utilizes external services or public APIs to retrieve some data points that are not natively available through the official GitHub API. These additional data points might enhance the richness of your Gitcard. 
 
-  This process utilizes external services or public APIs to retrieve some data points that are not natively available through the official GitHub API. These additional data points might enhance the richness of your Gitcard. 
+   **Credits:**
 
-  **Credits:**
+   We acknowledge and appreciate the work done by the developer behind the project [github-readme-streak-stats](https://github.com/DenverCoder1/github-readme-streak-stats) by [DenverCoder1](https://github.com/DenverCoder1/). This project provides valuable insights into GitHub contribution patterns, which can be leveraged to generate a more comprehensive Gitcard.
 
-  We acknowledge and appreciate the work done by the developer behind the project [github-readme-streak-stats](https://github.com/DenverCoder1/github-readme-streak-stats) by [DenverCoder1](https://github.com/DenverCoder1/). This project provides valuable insights into GitHub contribution patterns, which can be leveraged to generate a more comprehensive Gitcard.
+   This Gitcard creator utilizes the following services to obtain data:
 
-  This Gitcard creator utilizes the following services to obtain data:
+   - **GitHub Readme Streak Stats:** Provides information about your GitHub contribution streaks.
 
-  - **GitHub Readme Streak Stats:** Provides information about your GitHub contribution streaks.
+   </details>
+   <br>
 
-</details>
+      **Node.js:**
 
+         1. Open a Terminal window in your project directory.
+         2. Update your Github User name in the URL in `script.js`.
+         3. Execute the following command:
 
-   **Windows with PowerShell:**
+            node script.js
 
-     1. Open a PowerShell window in your project directory.
-     2. Execute the following command, replacing `<path/to/process_data.ps1>` with the actual path to your script:
-
-        ```bash
-        .\process_data.ps1
-        ```
-
-     3. If you encounter any errors related to execution policy, run this command first:
-
-        ```bash
-        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
-        ```
-
-   **Mac/Linux:**
-
-     1. Open a terminal window in your project directory.
-     2. Make the script executable using the following command:
-
-        ```bash
-        chmod +x process_data.sh
-        ```
-
-     3. Run the script using:
-
-        ```bash
-        ./process_data.sh
-        ```
 
 3. **Open `index.html` in live server:**
 
