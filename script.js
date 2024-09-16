@@ -1,6 +1,12 @@
 const https = require('https');
 const fs = require('fs');
-https.get('https://streak-stats.demolab.com/?user=GITHUB_USERNAME', (res) => {
+const username = process.argv[2];
+if (!username) {
+  console.error('Please provide a Github Username as a command-line argument. \nExample: node script.js your-github-username');
+  process.exit(1);
+}
+const url = `https://streak-stats.demolab.com/?user=${username}`;
+https.get(url, (res) => {
   let data = '';
   res.on('data', (chunk) => {
     data += chunk;
@@ -23,7 +29,8 @@ https.get('https://streak-stats.demolab.com/?user=GITHUB_USERNAME', (res) => {
       extractedLines[8]
     ];
     const jsonArray = JSON.stringify(formattedOutput, null, 2);
-    fs.writeFileSync('final_output.txt', jsonArray);
+    fs.writeFileSync('output.txt', jsonArray);
+    console.log('Data extracted and saved Successfully to output.txt for the username:', username);
   });
 }).on('error', (err) => {
   console.error('Error fetching the page:', err);

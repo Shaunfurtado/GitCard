@@ -40,11 +40,10 @@ This guide walks you through creating a visually appealing GitHub card that show
 
       **Node.js:**
 
-         1. Open a Terminal window in your project directory.
-         2. Update your Github User name in the URL in `script.js`.
-         3. Execute the following command:
+         1. Open a Terminal window in project repository.
+         2. Execute the following command:
 
-            node script.js
+            node script.js your-github-username 
 
 
 3. **Open `index.html` in live server:**
