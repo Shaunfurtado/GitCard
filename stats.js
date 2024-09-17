@@ -85,7 +85,7 @@ function mapDataToElements(data) {
   document.getElementById("streak-duration").textContent = streakDuration;
 }
 
-fetch("./output.txt")
+fetch("/output.txt")
   .then(response => response.json())
   .then(data => {
     mapDataToElements(data);
